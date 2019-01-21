@@ -12,7 +12,6 @@ public class SkeletonSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        Instantiate(SkeletronPrefab, transform.position, Quaternion.identity);
 
 
     }
@@ -21,4 +20,10 @@ public class SkeletonSpawner : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public void SpawnSkeleton()
+    {
+        Instantiate(SkeletronPrefab, transform.position, Quaternion.identity);
+
+    }
 }

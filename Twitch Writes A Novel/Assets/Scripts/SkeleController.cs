@@ -32,7 +32,6 @@ public class SkeleController : MonoBehaviour {
             animator.SetBool("Attacking", true);
 
             attackDelay = attackDelay + Time.deltaTime;
-            Debug.Log(attackDelay);
         
             if(attackDelay > 1f)
             {
