@@ -4,22 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SkeletonTextManager : MonoBehaviour {
-
-    public TextMesh damageText;
+    public TwitchChat GameManager;
+    public TextMesh twitchName;
 
     // Use this for initialization
     void Start () {
+        updateText();
 
     }
 
     // Update is called once per frame
     void Update () {
 
-        updateText();
 	}
 
     void updateText()
     {
-        damageText.text = transform.parent.gameObject.GetComponent<SkeleController>().health.ToString();
+
+
+        twitchName.text = TwitchChat.lastName;
+
+
     }
 }

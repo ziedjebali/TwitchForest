@@ -9,12 +9,14 @@ using UnityEngine.UI;
 
 public class TwitchChat : MonoBehaviour
 {
+    public static string lastName;
 
     public GameObject GameManager;
 
     private TcpClient twitchClient;
     private StreamReader reader;
     private StreamWriter writer;
+    private int index = 0;
 
     public string username, password, channelName; //Get the password from https://twitchapps.com/tmi
 
@@ -24,6 +26,9 @@ public class TwitchChat : MonoBehaviour
 
     void Start()
     {
+        lastName = "Twitch User";
+
+        
         Connect();
     }
 
@@ -69,6 +74,9 @@ public class TwitchChat : MonoBehaviour
                 //print(String.Format("{0}: {1}", chatName, message));
                 chatBox.text = chatBox.text + "\n" + String.Format("{0}: {1}", chatName, message);
 
+                lastName = chatName;
+
+
                 //Run the instructions to control the game!
                 GameInputs(message);
             }
@@ -77,15 +85,16 @@ public class TwitchChat : MonoBehaviour
 
     private void GameInputs(string ChatInputs)
     {
-        if (ChatInputs.ToLower() == "spawn skeleton")
+        if (ChatInputs.ToLower() == "spawn red")
         {
-            GameManager.GetComponent<SkeletonSpawner>().SpawnSkeleton();
-            Debug.Log("Spawned Skele");
+            GameManager.GetComponent<SkeletonSpawner>().SpawnSkeletonRed();
+            Debug.Log("Spawned Skele Red");
         }
 
-        if (ChatInputs.ToLower() == "right")
+        if (ChatInputs.ToLower() == "spawn blue")
         {
-            player.AddForce(Vector3.right * (speed * 1000));
+            GameManager.GetComponent<SkeletonSpawner>().SpawnSkeletonBlue();
+            Debug.Log("Spawned Skele Blue");
         }
 
         if (ChatInputs.ToLower() == "forward")

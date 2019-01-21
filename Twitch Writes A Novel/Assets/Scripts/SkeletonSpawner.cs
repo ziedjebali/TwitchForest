@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class SkeletonSpawner : MonoBehaviour {
 
-    public GameObject SkeletronPrefab;
-    public Transform skeleSpawn;
+    public GameObject SkeletronPrefabRed;
+
+    public GameObject SkeletronPrefabBlue;
+
+    public GameObject RedskeleSpawn;
+    public GameObject BlueskeleSpawn;
 
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
 
 
@@ -21,9 +24,15 @@ public class SkeletonSpawner : MonoBehaviour {
 		
 	}
 
-    public void SpawnSkeleton()
+    public void SpawnSkeletonRed()
     {
-        Instantiate(SkeletronPrefab, transform.position, Quaternion.identity);
+        Instantiate(SkeletronPrefabRed, RedskeleSpawn.transform.position, Quaternion.identity);
+
+    }
+
+    public void SpawnSkeletonBlue()
+    {
+        Instantiate(SkeletronPrefabBlue, BlueskeleSpawn.transform.position, Quaternion.identity);
 
     }
 }

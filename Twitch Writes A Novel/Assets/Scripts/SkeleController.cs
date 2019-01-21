@@ -7,6 +7,9 @@ public class SkeleController : MonoBehaviour {
     public Animator animator;
     Text damageText;
     Transform textSpawn;
+    public bool team = false;
+    public int redorBlue;
+    
 
     public float health = 100f;
     public float damage = 10f;
@@ -17,11 +20,15 @@ public class SkeleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        Destroy(gameObject, 15f);
+        damage = Random.Range(10f, 15f);
 
     }
 
     // Update is called once per frame
     void Update () {
+
+
         if(health <= 0)
         {
             Destroy(gameObject);
@@ -41,7 +48,7 @@ public class SkeleController : MonoBehaviour {
         }
         else
         {
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            transform.Translate(Vector3.right * Time.deltaTime * speed * redorBlue);
             animator.SetBool("Attacking", false);
 
         }
@@ -55,8 +62,24 @@ public class SkeleController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Attacking");
-        Attacking = true;
+
+        if(redorBlue > 0)
+        {
+            if(collision.tag == "BlueTeam")
+            {
+                Debug.Log("Attacking");
+                Attacking = true;
+            }
+        }else if(redorBlue < 0)
+        {
+            if(collision.tag == "RedTeam")
+            {
+                Debug.Log("Attacking");
+                Attacking = true;
+            }
+        }
+        
+        
 
     }
     private void OnTriggerExit2D(Collider2D collision)
